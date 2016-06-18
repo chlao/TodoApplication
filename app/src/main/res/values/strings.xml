@@ -4,4 +4,8 @@
     <string name="add_item">Add a new item...</string>
     <string name="editText">Edit Item Below.</string>
     <string name="editSave">Save</string>
+    <string name="task_name">Task Name</string>
+    <string name="priority">Priority</string>
+    <string name="due_date">Due Date</string>
+    <string name="add_title">Add a new task</string>
 </resources>
