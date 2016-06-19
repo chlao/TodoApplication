@@ -1,9 +1,12 @@
 package com.example.christine.simpletodo;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -34,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
 
+    private static final String COLOR = "#4DB6AC";
+
     @Override
     // XML layout for the activity is applied in onCreate
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         lvItems = (ListView) findViewById(R.id.lvItems);
         lvItems.setAdapter(atodoAdapter);
 
-        etEditText = (EditText) findViewById(R.id.etEditText);
+        //etEditText = (EditText) findViewById(R.id.etEditText);
 
         setupListViewListener();
     }
@@ -77,6 +82,11 @@ public class MainActivity extends AppCompatActivity {
             //todoItems = new ArrayList<String>(FileUtils.readLines(file));
             todoItems = db.getAllItems();
 
+            /*
+            if (todoItems.isEmpty()){
+
+            }
+            */
             //todoItems = new ArrayList<Item>(FileUtils.readLines(file));
         } catch (Exception e){
             Log.d(TAG, e.getMessage());
@@ -108,11 +118,12 @@ public class MainActivity extends AppCompatActivity {
     public void setupListViewListener(){
         lvItems.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener(){
             public boolean onItemLongClick(AdapterView<?> adapter, View item, int pos, long id){
+                //writeItems();
+                db.deleteItem(todoItems.get(pos));
+
                 todoItems.remove(pos);
                 // If modify underlying data structure, need to notify adapter (else exception thrown and app crashes)
                 atodoAdapter.notifyDataSetChanged();
-                //writeItems();
-                db.deleteItem(todoItems.get(pos));
                 return true;
             }
         });
@@ -156,17 +167,17 @@ public class MainActivity extends AppCompatActivity {
                 extras = data.getExtras();
                 pos = extras.getInt("pos");
 
-                itemName = extras.getString("newItemName");
-                priority = extras.getString("newPriority");
-                dueDate = extras.getString("newDueDate");
+                newItemName = extras.getString("newItemName");
+                newPriority = extras.getString("newPriority");
+                newDueDate = extras.getString("newDueDate");
 
-                Item updatedItem = new Item(itemName, priority, dueDate);
+                Item updatedItem = new Item(newItemName, newPriority, newDueDate);
+
+                //writeItems();
+                db.updateItem(todoItems.get(pos), updatedItem);
 
                 todoItems.set(pos, updatedItem);
-
                 atodoAdapter.notifyDataSetChanged();
-                //writeItems();
-                db.updateItem(updatedItem);
             }
         } else if (requestCode == ADD_REQUEST){
             if (resultCode == Activity.RESULT_OK){

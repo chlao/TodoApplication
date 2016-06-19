@@ -16,12 +16,12 @@ public class ToDoItemDatabase extends SQLiteOpenHelper {
     private static final String TAG = "ToDoItemDatabase";
 
     private static final String DATABASE_NAME = "todoDatabase";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     private static final String TABLE_ITEMS = "items";
 
     private static final String KEY_ITEM_NAME = "name";
-    private static final String KEY_DUE_DATE = "dueDate";
+    private static final String KEY_DUE_DATE = "duedate";
     private static final String KEY_PRIORITY = "priority";
 
     private static ToDoItemDatabase sInstance;
@@ -60,8 +60,8 @@ public class ToDoItemDatabase extends SQLiteOpenHelper {
         // SQL for creating the tables
         String ITEMS_TABLE = "CREATE TABLE " + TABLE_ITEMS +
                 "(" + KEY_ITEM_NAME + " TEXT PRIMARY KEY, " +
-                      KEY_DUE_DATE + "TEXT, " +
-                      KEY_PRIORITY + "TEXT);";
+                      KEY_DUE_DATE + " TEXT, " +
+                      KEY_PRIORITY + " TEXT" + ");";
 
         db.execSQL(ITEMS_TABLE);
     }
@@ -78,7 +78,6 @@ public class ToDoItemDatabase extends SQLiteOpenHelper {
             db.execSQL("DROP TABLE IF EXISTS " + TABLE_ITEMS);
             onCreate(db);
         }
-
     }
 
     public void addItem(Item item){
@@ -113,7 +112,7 @@ public class ToDoItemDatabase extends SQLiteOpenHelper {
 
         String GET_ITEMS_QUERY = "SELECT * FROM " + TABLE_ITEMS;
 
-        SQLiteDatabase db = getWritableDatabase();
+        SQLiteDatabase db = getReadableDatabase();
 
         db.beginTransaction();
 
@@ -126,7 +125,8 @@ public class ToDoItemDatabase extends SQLiteOpenHelper {
                     itemName = cursor.getString(cursor.getColumnIndex(KEY_ITEM_NAME));
                     dueDate = cursor.getString(cursor.getColumnIndex(KEY_DUE_DATE));
                     priority = cursor.getString(cursor.getColumnIndex(KEY_PRIORITY));
-                    Item item = new Item(itemName, dueDate, priority);
+                    Item item = new Item(itemName, priority, dueDate);
+                    items.add(item);
                 } while (cursor.moveToNext());
             }
         } catch (Exception e) {
@@ -142,27 +142,32 @@ public class ToDoItemDatabase extends SQLiteOpenHelper {
         return items;
     }
 
-    public void updateItem(Item item){
+    public void updateItem(Item item, Item newItem){
         SQLiteDatabase db = getWritableDatabase();
         db.beginTransaction();
 
         try{
             ContentValues values = new ContentValues();
-            values.put(KEY_ITEM_NAME, item.name);
-            values.put(KEY_DUE_DATE, item.dueDate);
-            values.put(KEY_PRIORITY, item.priority);
+            values.put(KEY_ITEM_NAME, newItem.name);
+            values.put(KEY_DUE_DATE, newItem.dueDate);
+            values.put(KEY_PRIORITY, newItem.priority);
 
             // Don't allow duplicate items with the same name
-            db.update(TABLE_ITEMS, values, KEY_ITEM_NAME + "= ?", new String[]{item.name});
+            int rows = db.update(TABLE_ITEMS, values, KEY_ITEM_NAME + "=?", new String[]{item.name});
 
+            //int rows = db.update(TABLE_ITEMS, values, KEY_ITEM_NAME + "='" + item.name + "'", null);
             // Insert if item didn't already exist
+
             /*
             if (rows != 1){
-                db.insertOrThrow(TABLE_ITEMS, null, values);
+                Log.d(TAG, rows + " updated");
+                //db.insertOrThrow(TABLE_ITEMS, null, values);
             }
             */
+
+            db.setTransactionSuccessful();
         } catch (Exception e) {
-            Log.d(TAG, "Error while trying to update items");
+            Log.d(TAG, "Error while trying to update items: " + e.getMessage());
         } finally {
             db.endTransaction();
         }

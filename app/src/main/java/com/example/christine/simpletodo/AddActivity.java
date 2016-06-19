@@ -47,7 +47,7 @@ public class AddActivity extends AppCompatActivity {
         extras.putString("itemName", taskName.getText().toString());
         extras.putString("priority", priority.getSelectedItem().toString());
 
-        String dueDateStr = dueDate.getMonth() + "/" + dueDate.getDayOfMonth() + "/" + dueDate.getYear();
+        String dueDateStr = (dueDate.getMonth() + 1) + "/" + dueDate.getDayOfMonth() + "/" + dueDate.getYear();
 
         extras.putString("dueDate", dueDateStr);
 

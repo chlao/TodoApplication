@@ -23,13 +23,13 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
-    <ImageView
+    <!--<ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/imageView"
         android:layout_above="@+id/due_date"
         android:layout_alignRight="@+id/due_date"
-        android:layout_alignEnd="@+id/due_date" />
+        android:layout_alignEnd="@+id/due_date" />-->
 
     <TextView
         android:layout_width="wrap_content"
@@ -37,7 +37,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:id="@+id/priority"
         android:layout_alignParentTop="true"
-        android:layout_alignRight="@+id/imageView"
-        android:layout_alignEnd="@+id/imageView" />
+        android:layout_alignRight="@+id/due_date"
+        android:layout_alignEnd="@+id/due_date" />
 
 </RelativeLayout>

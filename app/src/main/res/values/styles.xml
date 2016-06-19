@@ -8,4 +8,12 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+
+    <style name="priorityHIGH">
+        <item name="android:textColor"> #EF5350</item>
+    </style>
+
+    <style name="EditTextCustom" parent="android:Widget.EditText">
+        <!--<item name="android:background">@color/colorPrimary</item>-->
+    </style>
 </resources>

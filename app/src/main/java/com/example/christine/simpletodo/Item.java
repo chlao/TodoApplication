@@ -24,6 +24,7 @@ public class Item {
         this.dueDate = dueDate;
     }
 
+    /*
     public String convertPriorityToString(int priority) {
         switch (priority) {
             case HIGH_PRIORITY_POS:
@@ -48,5 +49,5 @@ public class Item {
             default:
                 return -1;
         }
-    }
+    }*/
 }

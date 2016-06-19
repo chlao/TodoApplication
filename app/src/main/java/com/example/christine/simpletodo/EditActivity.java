@@ -64,6 +64,12 @@ public class EditActivity extends AppCompatActivity {
         if (prioritySelection != -1) {
             priority.setSelection(prioritySelection);
         }
+
+        String[] prevDueDate = extras.getString("prevDueDate").split("/");
+        int year = Integer.parseInt(prevDueDate[2]);
+        int month = Integer.parseInt(prevDueDate[0]) - 1;
+        int date = Integer.parseInt(prevDueDate[1]);
+        dueDate.updateDate(year, month, date);
     }
 
     public void saveEdit(View view){
@@ -71,7 +77,7 @@ public class EditActivity extends AppCompatActivity {
         Intent resultIntent = new Intent();
 
         extras.putString("newItemName", taskName.getText().toString());
-        extras.putString("newDueDate", dueDate.getMonth() + "/" + dueDate.getDayOfMonth() + "/" + dueDate.getYear());
+        extras.putString("newDueDate", (dueDate.getMonth() + 1) + "/" + dueDate.getDayOfMonth() + "/" + dueDate.getYear());
 
         prioritySelection = convertPriorityToString(priority.getSelectedItemPosition());
 
