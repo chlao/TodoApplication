@@ -8,4 +8,7 @@
     <string name="priority">Priority</string>
     <string name="due_date">Due Date</string>
     <string name="add_title">Add a new task</string>
+    <string name="deletion_confirmation"> Are you sure you want to delete the task? </string>
+    <string name="confirm"> Confirm </string>
+    <string name="cancel"> Cancel </string>
 </resources>

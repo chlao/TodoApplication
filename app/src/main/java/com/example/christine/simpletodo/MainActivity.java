@@ -2,7 +2,9 @@ package com.example.christine.simpletodo;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
@@ -118,12 +120,33 @@ public class MainActivity extends AppCompatActivity {
     public void setupListViewListener(){
         lvItems.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener(){
             public boolean onItemLongClick(AdapterView<?> adapter, View item, int pos, long id){
-                //writeItems();
-                db.deleteItem(todoItems.get(pos));
+                // MainActivity.this - Listener replaced this 
+                final AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
 
-                todoItems.remove(pos);
-                // If modify underlying data structure, need to notify adapter (else exception thrown and app crashes)
-                atodoAdapter.notifyDataSetChanged();
+                final Item currItem = todoItems.get(pos);
+                alert.setTitle("Delete entry");
+
+
+                alert.setMessage(R.string.deletion_confirmation)
+                        .setPositiveButton(R.string.confirm, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                //writeItems();
+                                db.deleteItem(currItem);
+
+                                todoItems.remove(currItem);
+                                // If modify underlying data structure, need to notify adapter (else exception thrown and app crashes)
+                                atodoAdapter.notifyDataSetChanged();
+                            }
+                        })
+                        .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                // User cancelled the dialog
+                                dialog.cancel();
+                            }
+                        });
+
+                alert.show();
+
                 return true;
             }
         });
