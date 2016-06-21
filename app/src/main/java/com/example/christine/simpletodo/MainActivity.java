@@ -120,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
     public void setupListViewListener(){
         lvItems.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener(){
             public boolean onItemLongClick(AdapterView<?> adapter, View item, int pos, long id){
-                // MainActivity.this - Listener replaced this 
+                // MainActivity.this - Listener replaced this
                 final AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
 
                 final Item currItem = todoItems.get(pos);
@@ -216,7 +216,7 @@ public class MainActivity extends AppCompatActivity {
                 atodoAdapter.notifyDataSetChanged();
                 //writeItems();
                 db.addItem(newItem);
-            }
+            } 
         }
     }
 }

@@ -1,6 +1,7 @@
 package com.example.christine.simpletodo;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,6 +43,17 @@ public class ItemAdapter extends ArrayAdapter<Item>{
         name.setText(item.name);
         dueDateStr.setText(item.dueDate);
         priority.setText(item.priority);
+
+        switch (item.priority){
+            case "HIGH":
+                priority.setTextColor(Color.parseColor("#F44336"));
+                break;
+            case "MEDIUM":
+                priority.setTextColor(Color.parseColor("#FFC107"));
+                break;
+            case "LOW":
+                priority.setTextColor(Color.parseColor("#8BC34A"));
+        }
 
         //dueDate.setText(item.dueDate);
         //SimpleDateFormat format = new SimpleDateFormat();

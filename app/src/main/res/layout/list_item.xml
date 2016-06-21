@@ -23,7 +23,7 @@
             android:layout_height="match_parent"
             android:padding="10dp">
             <TextView
-                android:layout_width="280dp"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:id="@+id/item_name"

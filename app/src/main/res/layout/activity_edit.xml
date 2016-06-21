@@ -58,7 +58,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/editPriority"
-                android:layout_marginBottom="12dp"
+                android:layout_marginBottom="15dp"
                 android:layout_below="@+id/editTaskName"
                 android:layout_toEndOf="@+id/textView"
                 android:spinnerMode="dropdown"

@@ -173,6 +173,26 @@ public class ToDoItemDatabase extends SQLiteOpenHelper {
         }
     }
 
+    public boolean checkDuplicate(String itemName){
+        SQLiteDatabase db = getWritableDatabase();
+        db.beginTransaction();
+
+        String GET_ITEMS_QUERY = "SELECT * FROM " + TABLE_ITEMS + " WHERE " + KEY_ITEM_NAME + "=?";
+
+        Cursor cursor = db.rawQuery(GET_ITEMS_QUERY, new String[]{itemName});
+
+        try{
+            if (cursor.moveToFirst()){
+                return true;
+            }
+        } catch (Exception e){
+            Log.d(TAG, "Error while trying to check duplicates");
+        } finally {
+            db.endTransaction();
+        }
+        return false;
+    }
+
     public void deleteItem(Item item){
         SQLiteDatabase db = getWritableDatabase();
         db.beginTransaction();

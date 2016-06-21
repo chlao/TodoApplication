@@ -24,6 +24,7 @@
                 android:textColor="@color/abc_primary_text_material_light"
                 android:text="@string/task_name"
                 android:id="@+id/textView"
+                android:layout_marginRight="12dp"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
@@ -32,15 +33,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/addTaskName"
-                android:layout_alignParentTop="true"
-                android:layout_alignLeft="@+id/addPriority"
-                android:layout_alignStart="@+id/addPriority"
-                android:layout_marginLeft="29dp"
-                android:layout_marginStart="29dp"
+                style="@style/EditTextCustom"
                 android:layout_marginBottom="15dp"
+                android:layout_alignParentTop="true"
                 android:layout_alignRight="@+id/addDueDate"
                 android:layout_alignEnd="@+id/addDueDate"
-                style="@style/EditTextCustom"/>
+                android:layout_toEndOf="@+id/textView" />
 
             <!--<View
                 android:layout_width="match_parent"
@@ -65,7 +63,7 @@
                 android:textColor="@color/abc_primary_text_material_light"
                 android:text="@string/priority"
                 android:id="@+id/addPriorityText"
-                android:layout_marginBottom="12dp"
+                android:layout_marginBottom="15dp"
                 android:layout_alignTop="@+id/addPriority"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
@@ -74,7 +72,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/addPriority"
-                android:layout_marginBottom="12dp"
+                android:layout_marginBottom="15dp"
                 android:layout_below="@+id/addTaskName"
                 android:layout_toEndOf="@+id/textView"
                 android:spinnerMode="dropdown"
