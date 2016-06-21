@@ -8,7 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.christine.simpletodo.EditActivity" >
+    tools:context="com.example.christine.simpletodo.activities.EditActivity" >
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -16,14 +16,14 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="22dp"
+                android:textSize="@dimen/form_text_size"
                 android:textColor="@color/abc_primary_text_material_light"
                 android:text="@string/task_name"
                 android:id="@+id/textView"
+                android:layout_marginRight="@dimen/edit_view_margin"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
@@ -32,24 +32,21 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/editTaskName"
+                style="@style/EditTextCustom"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
                 android:layout_alignParentTop="true"
-                android:layout_alignLeft="@+id/ediPriority"
-                android:layout_alignStart="@+id/editPriority"
-                android:layout_marginLeft="29dp"
-                android:layout_marginStart="29dp"
-                android:layout_marginBottom="15dp"
                 android:layout_alignRight="@+id/editDueDate"
                 android:layout_alignEnd="@+id/editDueDate"
-                style="@style/EditTextCustom"/>
+                android:layout_toEndOf="@+id/textView" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="22dp"
+                android:textSize="@dimen/form_text_size"
                 android:textColor="@color/abc_primary_text_material_light"
                 android:text="@string/priority"
-                android:id="@+id/textView3"
-                android:layout_marginBottom="12dp"
+                android:id="@+id/editPriorityText"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
                 android:layout_alignTop="@+id/editPriority"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
@@ -58,23 +55,22 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/editPriority"
-                android:layout_marginBottom="15dp"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
                 android:layout_below="@+id/editTaskName"
                 android:layout_toEndOf="@+id/textView"
                 android:spinnerMode="dropdown"
                 android:layout_alignParentStart="false"
-                android:layout_alignParentEnd="true"
-                android:entries="@array/spinnerItems" />
+                android:layout_alignParentEnd="true" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="22dp"
+                android:textSize="@dimen/form_text_size"
                 android:textColor="@color/abc_primary_text_material_light"
                 android:text="@string/due_date"
-                android:id="@+id/textView3"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
+                android:id="@+id/editDueDateText"
+                android:layout_marginTop="@dimen/due_date_margin"
+                android:layout_marginBottom="@dimen/due_date_margin"
                 android:layout_below="@+id/editPriority"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
@@ -83,23 +79,22 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/editDueDate"
-                android:layout_below="@+id/textView3"
+                android:layout_below="@+id/editDueDateText"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
         </RelativeLayout>
     </ScrollView>
     <android.support.design.widget.FloatingActionButton
-        android:layout_width="56dp"
-        android:layout_height="56dp"
+        android:layout_width="@dimen/activity_floating_width"
+        android:layout_height="@dimen/activity_floating_width"
         android:layout_gravity="bottom|right"
         android:clickable="true"
         android:src="@drawable/ic_save_white_24dp"
-        android:shape="oval"
-        app:borderWidth="0dp"
+        app:borderWidth="@dimen/activity_floating_border_width"
         android:onClick="saveEdit"
         app:layout_anchor="@id/editDueDate"
         app:layout_anchorGravity="bottom|right|end"
         android:adjustViewBounds="false"
-        android:layout_marginRight="5dp"
-        android:layout_marginBottom="5dp" />
+        android:layout_marginRight="@dimen/activity_floating_margin"
+        android:layout_marginBottom="@dimen/activity_floating_margin" />
 </android.support.design.widget.CoordinatorLayout>

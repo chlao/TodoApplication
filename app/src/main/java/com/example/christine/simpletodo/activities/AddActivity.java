@@ -1,19 +1,19 @@
-package com.example.christine.simpletodo;
+package com.example.christine.simpletodo.activities;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import com.example.christine.simpletodo.R;
+import com.example.christine.simpletodo.utils.ToDoItemDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,8 +22,8 @@ public class AddActivity extends AppCompatActivity {
     EditText taskName;
     Spinner priority;
     DatePicker dueDate;
+
     Bundle extras = new Bundle();
-    String dueDateStr;
     ToDoItemDatabase db = ToDoItemDatabase.getInstance(this);
 
     @Override
@@ -53,18 +53,14 @@ public class AddActivity extends AppCompatActivity {
             Context context = getApplicationContext();
             CharSequence text = "Please enter a task name!";
 
-            int duration = Toast.LENGTH_SHORT;
-
-            Toast toast = Toast.makeText(context, text, duration);
+            Toast toast = Toast.makeText(context, text, Toast.LENGTH_SHORT);
             toast.show();
 
         } else if (db.checkDuplicate(taskName.getText().toString())) {
             Context context = getApplicationContext();
             CharSequence text = "A task with that name already exists!";
 
-            int duration = Toast.LENGTH_SHORT;
-
-            Toast toast = Toast.makeText(context, text, duration);
+            Toast toast = Toast.makeText(context, text, Toast.LENGTH_SHORT);
             toast.show();
 
             setResult(Activity.RESULT_CANCELED);

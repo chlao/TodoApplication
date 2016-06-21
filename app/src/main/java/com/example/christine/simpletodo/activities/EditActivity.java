@@ -1,6 +1,7 @@
-package com.example.christine.simpletodo;
+package com.example.christine.simpletodo.activities;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,6 +10,10 @@ import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
+
+import com.example.christine.simpletodo.R;
+import com.example.christine.simpletodo.utils.ToDoItemDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +22,8 @@ public class EditActivity extends AppCompatActivity {
     EditText taskName;
     Spinner priority;
     DatePicker dueDate;
+
+    ToDoItemDatabase db = ToDoItemDatabase.getInstance(this);
 
     private static final int HIGH_PRIORITY_POS = 0;
     private static final int MEDIUM_PRIORITY_POS = 1;
@@ -73,19 +80,38 @@ public class EditActivity extends AppCompatActivity {
     }
 
     public void saveEdit(View view){
-        String prioritySelection;
-        Intent resultIntent = new Intent();
+        if( taskName.getText().toString().trim().equals(""))
+        {
+            Context context = getApplicationContext();
+            CharSequence text = "Please enter a task name!";
 
-        extras.putString("newItemName", taskName.getText().toString());
-        extras.putString("newDueDate", (dueDate.getMonth() + 1) + "/" + dueDate.getDayOfMonth() + "/" + dueDate.getYear());
+            Toast toast = Toast.makeText(context, text, Toast.LENGTH_SHORT);
+            toast.show();
 
-        prioritySelection = convertPriorityToString(priority.getSelectedItemPosition());
+        } else if (db.checkDuplicate(taskName.getText().toString())) {
+            Context context = getApplicationContext();
+            CharSequence text = "A task with that name already exists!";
 
-        extras.putString("newPriority", prioritySelection);
+            Toast toast = Toast.makeText(context, text, Toast.LENGTH_SHORT);
+            toast.show();
 
-        resultIntent.putExtras(extras);
-        setResult(Activity.RESULT_OK, resultIntent);
-        finish();
+            setResult(Activity.RESULT_CANCELED);
+        }
+        else {
+            String prioritySelection;
+            Intent resultIntent = new Intent();
+
+            extras.putString("newItemName", taskName.getText().toString());
+            extras.putString("newDueDate", (dueDate.getMonth() + 1) + "/" + dueDate.getDayOfMonth() + "/" + dueDate.getYear());
+
+            prioritySelection = convertPriorityToString(priority.getSelectedItemPosition());
+
+            extras.putString("newPriority", prioritySelection);
+
+            resultIntent.putExtras(extras);
+            setResult(Activity.RESULT_OK, resultIntent);
+            finish();
+        }
     }
 
     public String convertPriorityToString(int priority) {

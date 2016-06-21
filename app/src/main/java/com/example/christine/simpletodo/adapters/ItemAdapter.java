@@ -1,4 +1,4 @@
-package com.example.christine.simpletodo;
+package com.example.christine.simpletodo.adapters;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -6,16 +6,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.example.christine.simpletodo.models.Item;
+
 import java.util.ArrayList;
+
+import com.example.christine.simpletodo.R;
 
 /**
  * Created by Christine on 6/16/2016.
  */
 public class ItemAdapter extends ArrayAdapter<Item>{
-    //private ArrayList<Item> items;
+    private static final String HIGH_COLOR = "#F44336";
+    private static final String MEDIUM_COLOR = "#FFC107";
+    private static final String LOW_COLOR = "#8BC34A";
 
     /* Override the constructor for ArrayAdapter
 	* the only variable we care about now is ArrayList<Item> objects,
@@ -23,7 +28,6 @@ public class ItemAdapter extends ArrayAdapter<Item>{
 	*/
     public ItemAdapter(Context context, int textViewResourceId, ArrayList<Item> objects) {
         super(context, textViewResourceId, objects);
-        //this.items = objects;
     }
 
     public View getView(int position, View convertView, ViewGroup parent){
@@ -46,18 +50,14 @@ public class ItemAdapter extends ArrayAdapter<Item>{
 
         switch (item.priority){
             case "HIGH":
-                priority.setTextColor(Color.parseColor("#F44336"));
+                priority.setTextColor(Color.parseColor(HIGH_COLOR));
                 break;
             case "MEDIUM":
-                priority.setTextColor(Color.parseColor("#FFC107"));
+                priority.setTextColor(Color.parseColor(MEDIUM_COLOR));
                 break;
             case "LOW":
-                priority.setTextColor(Color.parseColor("#8BC34A"));
+                priority.setTextColor(Color.parseColor(LOW_COLOR));
         }
-
-        //dueDate.setText(item.dueDate);
-        //SimpleDateFormat format = new SimpleDateFormat();
-        //String dateToStr = format.format()
 
         return convertView;
     }

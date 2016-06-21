@@ -2,4 +2,15 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="activity_floating_width">56dp</dimen>
+    <dimen name="activity_floating_border_width">0dp</dimen>
+    <dimen name="activity_floating_margin">5dp</dimen>
+    <dimen name="card_corner_radius">4dp</dimen>
+    <dimen name="card_elevation">2sp</dimen>
+    <dimen name="card_padding">10dp</dimen>
+    <dimen name="form_text_size">22dp</dimen>
+    <dimen name="due_date_margin">10dp</dimen>
+    <dimen name="edit_view_margin">12dp</dimen>
+    <dimen name="empty_list_text_size">6dp</dimen>
+    <dimen name="taskName_title_width">200dp</dimen>
 </resources>

@@ -11,9 +11,8 @@
         android:layout_gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        card_view:cardCornerRadius="4dp"
-        card_view:cardMaxElevation="5sp"
-        card_view:cardElevation="2sp"
+        card_view:cardCornerRadius="@dimen/cardview_default_radius"
+        card_view:cardElevation="@dimen/cardview_default_elevation"
         card_view:cardUseCompatPadding="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
@@ -21,14 +20,13 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="10dp">
+            android:padding="@dimen/card_padding">
             <TextView
-                android:layout_width="300dp"
+                android:layout_width="@dimen/taskName_title_width"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:id="@+id/item_name"
-                android:scrollHorizontally="true"
-                android:text="Item Name That is Really Really Really Long" />
+                android:scrollHorizontally="true" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -39,14 +37,6 @@
                 android:layout_below="@+id/item_name"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true" />
-
-            <!--<ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/imageView"
-                android:layout_above="@+id/due_date"
-                android:layout_alignRight="@+id/due_date"
-                android:layout_alignEnd="@+id/due_date" />-->
 
             <TextView
                 android:layout_width="wrap_content"

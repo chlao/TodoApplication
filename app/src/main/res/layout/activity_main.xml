@@ -8,18 +8,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.christine.simpletodo.MainActivity"
+    tools:context="com.example.christine.simpletodo.activities.MainActivity"
     android:id="@+id/container">
-
-    <!--<Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/add"
-        android:id="@+id/button"
-        android:onClick="onAddItem"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />-->
 
     <ListView
         android:layout_width="wrap_content"
@@ -30,31 +20,19 @@
         android:layout_alignParentStart="true"
         android:divider="@null" />
 
-    <!--<ImageButton
-        android:layout_width="56dp"
-        android:layout_height="56dp"
-        android:id="@+id/button"
-        android:onClick="onAddItem"
-        android:src="@drawable/floating_add"
-        android:background="@android:color/transparent"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="false"
-        android:scaleType="centerCrop" />-->
-
     <android.support.design.widget.FloatingActionButton
-        android:layout_width="56dp"
-        android:layout_height="56dp"
+        android:layout_width="@dimen/activity_floating_width"
+        android:layout_height="@dimen/activity_floating_width"
         android:layout_gravity="bottom|right"
         android:clickable="true"
         android:src="@drawable/plus"
         android:shape="oval"
-        app:borderWidth="0dp"
+        app:borderWidth="@dimen/activity_floating_border_width"
         android:onClick="onAddItem"
         app:layout_anchor="@id/container"
         app:layout_anchorGravity="bottom|right"
         android:adjustViewBounds="false"
-        android:layout_marginRight="5dp"
-        android:layout_marginBottom="5dp"/>
+        android:layout_marginRight="@dimen/activity_floating_margin"
+        android:layout_marginBottom="@dimen/activity_floating_margin"/>
 
 </android.support.design.widget.CoordinatorLayout>

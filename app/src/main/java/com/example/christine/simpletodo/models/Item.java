@@ -1,6 +1,4 @@
-package com.example.christine.simpletodo;
-
-import java.util.Date;
+package com.example.christine.simpletodo.models;
 
 /**
  * Created by Christine on 6/16/2016.
