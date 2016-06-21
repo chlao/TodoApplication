@@ -36,9 +36,12 @@ Here's a walkthrough of implemented user stories:
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
-## Notes
+## Notes 
 
-Describe any challenges encountered while building the app.
+# Challenges 
+* Getting used to these new terms and fucntions specific to Android like activity, view, inflate and context.
+* AFter reoganizing my files, I had an issuing building and running the project. I thought it was because my file names were all messed up, so I cleaned up and rebulit my project, but I still had the issue. It turns out I was running MainActivity instead of app. 
+* There was an issuing updating the SQL Database. It would update locally, and the query returned the right amount of rows modified, but if I restarted the app, the update didn't persist. I didn't set the SQL transaction as successful, so it my changes didn't persist. 
 
 ## License
 
